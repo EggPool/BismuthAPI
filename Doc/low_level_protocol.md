@@ -45,9 +45,10 @@ SLEN = 10
 
 
 def send(sdef, data, slen=SLEN):
-    # Make sure the packet is sent in one call
     sdef.settimeout(LTIMEOUT)
-    sdef.sendall(str(len(str(json.dumps(data)))).encode("utf-8").zfill(slen)+str(json.dumps(data)).encode("utf-8"))
+    sdata = str(json.dumps(data))
+    # Make sure the packet is sent in one call
+    res = self.sdef.sendall(str(len(sdata)).encode("utf-8").zfill(slen)+sdata.encode("utf-8"))
     # send will raise an error if socket is broken
 
 
