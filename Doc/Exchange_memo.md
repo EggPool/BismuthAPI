@@ -1,7 +1,9 @@
 # Sample commands
 
 Memo for exchanges willing to use the native Bismuth API.  
-See [commands](commands_reference.md).
+> Note that an *almost* bitcoind-compatible [Bismuth json-rpc server](https://github.com/EggPool/BismuthRPC)  is also available and may ease your integration.
+
+See [commands](commands_reference.md) for further command references.
 
 *WIP*
 
