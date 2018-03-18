@@ -9,6 +9,10 @@ See [commands](commands_reference.md) for further command references.
 
 ## Create a new address
 
+Command "[Keygen](https://github.com/EggPool/BismuthAPI/blob/master/Doc/commands_reference.md#keygen)" returns [privkey, pubkey, address]
+
+> Note: creating a new address is entropy and time intensive. If you plan to create a large # of addresses, it may be good to have several nodes running, so you can use one for address generation, and not slow down the regular tx polling.  You can also use local python scripts.
+
 
 ## Get a block by its height with its tx
 
@@ -36,5 +40,8 @@ Construct and sign locally, then ask the node to insert the transaction in mempo
 
 
 # More
+
+## Get Status info
+
 
 ## Polling for new transactions
