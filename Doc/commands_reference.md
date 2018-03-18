@@ -9,10 +9,10 @@ This is a documented subset of the commands the nodes currently understand.
 ## statusjson
 > takes no parameter, returns a dict
 
-Returns a dict with main status info, including protocol and node version, current blockheight, current diff, thread count, uptime, consensus and peer count.
+Returns a dict with main status info, including protocol and node version, current blockheight, current diff, thread count, uptime, consensus and peer count.  
 Prefered way of getting most info over a single call.
 
-## diffget
+## diffget
 > takes no parameter, returns a list
 
 Returns diff, diff adjusted (for the next block)
@@ -31,10 +31,10 @@ TODO
 
 ## keygen
 
-## txsend
+## txsend
 *NOT* secure, do not use
 
-## mpinsert
+## mpinsert
 
 ## addlist
 
@@ -49,13 +49,13 @@ TODO
 
 This commands are not used by nodes themselves, but are available to third party clients.
 
-## api_ping 
+## api_ping 
 > takes no parameter, returns a string
 
 Does nothing except keep the socket open. API client wxilling a persistent connection can send an api_ping every 30 sec at most.  
 The node will answer with a single string, 'api_pong'.
 
-## api_getaddressinfo
+## api_getaddressinfo
 > takes an address, returns a dict
 
 Returns a dict with  
