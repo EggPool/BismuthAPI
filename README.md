@@ -26,7 +26,9 @@ See the "[Doc](doc/)" directory for a quick start.
 
 # Available client libraries
 
-As for now, only the [Python client library](Python/) is available. 
+WIP:
+* [Python client library](Python/) Available (reference)
+* [PHP client library](PHP/) Available with demo app.
 
 # Related work
 
