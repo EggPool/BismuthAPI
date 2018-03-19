@@ -1,8 +1,8 @@
 """
 Bismuth default/legacy connection layer.
 Json over sockets
-
 This file is no more compatible with the Bismuth code, it's been converted to a class
+EggPool 2018
 """
 
 import json
@@ -22,14 +22,13 @@ __version__ = '0.1.7'
 class Connection(object):
     """Connection to a Bismuth Node. Handles auto reconnect when needed"""
 
-    # TODO: add a maintenance thread that requests blockheight every 30 sec and updates balances when new blocks() are there.
-
-    __slots__ = ('ipport', 'verbose', 'sdef', 'stats', 'last_activity', 'command_lock')
+    __slots__ = ('ipport', 'verbose', 'sdef', 'stats', 'last_activity', 'command_lock', 'raw')
     
-    def __init__(self, ipport, verbose=False):
+    def __init__(self, ipport, verbose=False, raw=False):
         """ipport is an (ip, port) tuple"""
         self.ipport = ipport
         self.verbose = verbose
+        self.raw = raw
         self.sdef = None
         self.last_activity = 0
         self.command_lock = threading.Lock()
@@ -40,8 +39,8 @@ class Connection(object):
         if not self.sdef:
             try:
                 if self.verbose:
-                    print("Connecting to",self.ipport)
-                self.sdef =  socket.socket()
+                    print("Connecting to", self.ipport)
+                self.sdef = socket.socket()
                 self.sdef.connect(self.ipport)
                 self.last_activity = time.time()
             except Exception as e:
@@ -56,6 +55,9 @@ class Connection(object):
             # Make sure the packet is sent in one call
             sdata = str(json.dumps(data))
             res = self.sdef.sendall(str(len(sdata)).encode("utf-8").zfill(slen)+sdata.encode("utf-8"))
+            if self.raw:
+                print("sending raw:")
+                print(str(len(sdata)).encode("utf-8").zfill(slen)+sdata.encode("utf-8"))
             self.last_activity = time.time()
             # res is always 0 on linux
             if self.verbose:
@@ -86,10 +88,13 @@ class Connection(object):
         """Wait for an answer, for LTIMEOUT sec."""
         self.check_connection()
         self.sdef.settimeout(LTIMEOUT)
+        if self.raw:
+            print("getting raw:")
         try:
             data = self.sdef.recv(slen)
+            if self.raw:
+                raw = data
             if not data:
-                # TODO: Harmonize with custom exception?
                 raise RuntimeError("Socket EOF")
             data = int(data)  # receive length
         except socket.timeout as e:
@@ -105,6 +110,8 @@ class Connection(object):
                 chunks.append(chunk)
                 bytes_recd = bytes_recd + len(chunk)
             self.last_activity = time.time()
+            if self.raw:
+                print(raw + b''.join(chunks))
             segments = b''.join(chunks).decode("utf-8")
             return json.loads(segments)
         except Exception as e:
@@ -136,7 +143,7 @@ class Connection(object):
                 fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                 print(exc_type, fname, exc_tb.tb_lineno)
                 """
-                # TODO : better handling of tries and delay between
+                # TODO : better handling of tries and delay between
                 if self.verbose:
                     print("Error <{}> sending command, trying to reconnect.".format(e))
                 self.check_connection()
@@ -151,7 +158,7 @@ class Connection(object):
         """Close the socket"""
         try:
             self.sdef.close()
-        except:
+        except Exception as e:
             pass
 
 
