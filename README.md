@@ -22,7 +22,7 @@ It's first purpose was to be used by echanges, to ease the integration of Bismut
 This is the API used by the nodes themselves, with some recent "api_" addons.  
 This repo is dedicated to this native API doc and code samples, if you want to directly talk to the Bismuth nodes, whatever your dev language is.
 
-See the "[Doc](doc/)" directory for a quick start.
+See the "[Doc](Doc/)" directory for a quick start.
 
 # Available client libraries
 

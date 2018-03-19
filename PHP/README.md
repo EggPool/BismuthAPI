@@ -8,10 +8,10 @@ Demonstrates the use of a simple PHP client library.
 
 [BismuthNative.inc.php](BismuthNative.inc.php)
 
-See demo.php for usage.  
+See [demo.php](demo.php) for usage.  
 GPL v3 licence, copyright EggPool.Net
 
-## Demo app
+## Demo app
 
 `php demo.php`
 A simple demo app, showing a few simple commands.  
