@@ -32,6 +32,6 @@ WIP - Doc, data and code samples for Bismuth Native client API and libraries.
 
 * (wip)
 
-## The fees
+## The fees
 
 * [Bismuth Fees](Fees.md)
