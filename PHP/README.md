@@ -2,4 +2,4 @@
 
 Module, sample code and Demo Client for PHP
 
-WIP
+WIP, not usable yet.
