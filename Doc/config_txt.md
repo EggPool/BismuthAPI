@@ -22,6 +22,8 @@ An online node, that supports the network.
 > config_custom.txt
 ```
 allowed=any
+# You can use 50 (min) to 200+ for thread limit
+thread_limit=100
 ```
 
 ### Sample config_custom.txt for an Exchange node
@@ -34,6 +36,8 @@ allowed=internal_ip_1,internal_ip_2
 banlist=custom,list,of,ip,to,blacklist,ask,the,devs
 whitelist=ip,of,trusted,nodes,ask,the,devs
 reveal_address=no
+# Depending on your resources, 200 may be ok too.
+thread_limit=100
 ```
 
 ### Sample config_custom.txt for a miner
@@ -44,6 +48,8 @@ A miner node, maximizing response time.
 ```
 pause=1
 allowed=any
+# 50 min, up to 200
+thread_limit=50
 ```
 
 ## Health check
@@ -59,4 +65,4 @@ The ips will be kept confidential. This ensures the exchange node can't be banne
 
 # OS config
 
-
+See - old but still ok - [Setup a stable Bismuth Node](http://www.eggpool.net/pdf/bismuth-open-files.pdf)
