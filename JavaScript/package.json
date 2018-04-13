@@ -1,0 +1,23 @@
+{
+  "name": "bismuthapi",
+  "version": "1.0.0",
+  "description": "Javascript client for bismuth api",
+  "main": "index.js",
+  "dependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/socket.io-client": "^1.4.32",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.5",
+    "socket.io-client": "^2.1.0",
+    "superagent": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.4",
+    "typescript": "^2.8.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
