@@ -28,9 +28,10 @@ describe("BismuthNative Class Test", () => {
         chai_1.expect(socket.connecting).to.be.false;
         return socket;
     }));
-    it("Can issue a command on socket", () => __awaiter(this, void 0, void 0, function* () {
+    it("Can issue a command on socket and wallet version is ok", () => __awaiter(this, void 0, void 0, function* () {
         let result = yield bis.command('statusjson');
         chai_1.expect(result).to.be.haveOwnProperty('blocks');
+        chai_1.expect(parseInt(result.walletversion.split('.').join(''))).to.be.greaterThan(4237);
         return result;
     }));
 });
@@ -44,7 +45,7 @@ describe("Bismuth SDK test : ", () => {
      * flood node
      */
     beforeEach((done) => {
-        setTimeout(done, 200);
+        setTimeout(done, 100);
     });
     it("Can Get node status", () => __awaiter(this, void 0, void 0, function* () {
         let result = yield sdk.getStatus();
@@ -65,28 +66,21 @@ describe("Bismuth SDK test : ", () => {
         chai_1.expect(difficulty).to.be.a('String');
         return result;
     }));
-    xit("Can Get a Transaction RAW details", () => __awaiter(this, void 0, void 0, function* () {
-        let result = yield sdk.getTxnRaw(['K1iuKwkOac4HSuzEBDxmqb5dOmfXEK98BaWQFHltdrbDd0C5iIEbh/Fj', false]);
-        chai_1.expect(result).to.be.an('Array');
-        console.log('result', result);
+    it("Can Get a Transaction JSON details", () => __awaiter(this, void 0, void 0, function* () {
+        let result = yield sdk.getTxnDetails(['K1iuKwkOac4HSuzEBDxmqb5dOmfXEK98BaWQFHltdrbDd0C5iIEbh/Fj', true]);
+        chai_1.expect(result).to.be.an('Object');
+        chai_1.expect(result).to.haveOwnProperty('txid');
         return result;
     }));
-    xit("Can Get a Transaction JSON details", () => __awaiter(this, void 0, void 0, function* () {
-        let result = yield sdk.getTxnRaw(['K1iuKwkOac4HSuzEBDxmqb5dOmfXEK98BaWQFHltdrbDd0C5iIEbh/Fj', true]);
-        chai_1.expect(result).to.be.an('Array');
-        console.log('result', result);
+    it("Can Get an list of addreses balances", () => __awaiter(this, void 0, void 0, function* () {
+        let addressList = ['731337bb0f76463d578626a48367dfea4c6efcfa317604814f875d10', '340c195f768be515488a6efedb958e135150b2ef3e53573a7017ac7d'];
+        let result = yield sdk.getAddressListBalance([addressList, 0, true]);
+        chai_1.expect(result).to.be.an('Object');
+        chai_1.expect(result).to.have.all.keys(...addressList);
         return result;
-    }));
-    xit("Can Get an list of addreses balances", () => __awaiter(this, void 0, void 0, function* () {
-        let result = yield sdk.getAddressListBalance([
-            ['731337bb0f76463d578626a48367dfea4c6efcfa317604814f875d10', '340c195f768be515488a6efedb958e135150b2ef3e53573a7017ac7d'],
-            0, true
-        ]);
-        chai_1.expect(result).to.be.an('Array');
-        console.log('result', result);
-        return result;
-    }));
-    it("Can genearte new keys", () => __awaiter(this, void 0, void 0, function* () {
+        // this is slow
+    })).timeout(5000);
+    it("Can generate new keys", () => __awaiter(this, void 0, void 0, function* () {
         let result = yield sdk.getNewKeys();
         chai_1.expect(result).to.be.an('Array');
         let [privateKey, publicKey, address] = result;

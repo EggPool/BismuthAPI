@@ -1,6 +1,7 @@
 
 import io from 'socket.io-client';
 import * as net from 'net';
+import { isBoolean } from 'util';
 
 const version = '1.0.0';
 
@@ -40,11 +41,12 @@ export class BismuthNative {
     }
 
     private _prepareRpcPayload(data) {
-        let dataToSend = JSON.stringify(data);
+        // Only json encode stuff that is not a number or boolean to have correct headers
+        let dataToSend = (!isNaN(data) || isBoolean(data)) ? data.toString() : JSON.stringify(data);
         return `${dataToSend.length.toString().padStart(10, '0')}${dataToSend}`
     }
 
-    public async command(command: string, options?: string[]|number[]): Promise<any> {
+    public async command(command: string, options?: any[]): Promise<any> {
         let socket = await this.getConnection();
         return new Promise((resolve, reject) => {
             let payload = this._prepareRpcPayload(command);
@@ -54,7 +56,12 @@ export class BismuthNative {
             socket.write(payload);
 
             if(options && options.length)
-                options.forEach(option=> socket.write(this._prepareRpcPayload(option.toString())));
+                options.forEach(option=> {
+                    let optionPayload = this._prepareRpcPayload(option);
+                    if (this.verbose)
+                        console.log('Sending Option', optionPayload);
+                    socket.write(optionPayload)
+                });
 
             socket.on('data', (response) => {
                 if (this.verbose)

@@ -16,6 +16,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const net = __importStar(require("net"));
+const util_1 = require("util");
 const version = '1.0.0';
 class BismuthNative {
     constructor({ server = '127.0.0.1', port = 5658, verbose = false }) {
@@ -39,7 +40,8 @@ class BismuthNative {
         });
     }
     _prepareRpcPayload(data) {
-        let dataToSend = JSON.stringify(data);
+        // Only json encode stuff that is not a number or boolean to have correct headers
+        let dataToSend = (!isNaN(data) || util_1.isBoolean(data)) ? data.toString() : JSON.stringify(data);
         return `${dataToSend.length.toString().padStart(10, '0')}${dataToSend}`;
     }
     command(command, options) {
@@ -51,7 +53,12 @@ class BismuthNative {
                     console.log('Sending Payload', payload);
                 socket.write(payload);
                 if (options && options.length)
-                    options.forEach(option => socket.write(this._prepareRpcPayload(option.toString())));
+                    options.forEach(option => {
+                        let optionPayload = this._prepareRpcPayload(option);
+                        if (this.verbose)
+                            console.log('Sending Option', optionPayload);
+                        socket.write(optionPayload);
+                    });
                 socket.on('data', (response) => {
                     if (this.verbose)
                         console.log('Recieved data from host', response.toString('utf8'));

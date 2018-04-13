@@ -25,9 +25,10 @@ describe("BismuthNative Class Test", () => {
         return socket;
     })
 
-    it("Can issue a command on socket",async()=>{
+    it("Can issue a command on socket and wallet version is ok",async()=>{
         let result = await bis.command('statusjson')
         expect(result).to.be.haveOwnProperty('blocks');
+        expect(parseInt(result.walletversion.split('.').join(''))).to.be.greaterThan(4237)
         return result;
     })
 })
@@ -44,7 +45,7 @@ describe("Bismuth SDK test : ",()=>{
      * flood node
      */
     beforeEach((done)=>{
-        setTimeout(done,200);
+        setTimeout(done,100);
     })
 
     it("Can Get node status",async()=>{
@@ -72,34 +73,25 @@ describe("Bismuth SDK test : ",()=>{
 
     })
 
-    xit("Can Get a Transaction RAW details",async()=>{
-        let result = await sdk.getTxnRaw(['K1iuKwkOac4HSuzEBDxmqb5dOmfXEK98BaWQFHltdrbDd0C5iIEbh/Fj', false]);
-        expect(result).to.be.an('Array');
-        console.log('result',result);
-        return result;
-
-    })
-
-    xit("Can Get a Transaction JSON details",async()=>{
-        let result = await sdk.getTxnRaw(['K1iuKwkOac4HSuzEBDxmqb5dOmfXEK98BaWQFHltdrbDd0C5iIEbh/Fj', true]);
-        expect(result).to.be.an('Array');
-        console.log('result',result);
+    it("Can Get a Transaction JSON details",async()=>{
+        let result = await sdk.getTxnDetails(['K1iuKwkOac4HSuzEBDxmqb5dOmfXEK98BaWQFHltdrbDd0C5iIEbh/Fj', true]);
+        expect(result).to.be.an('Object');
+        expect(result).to.haveOwnProperty('txid');
         return result;
 
     })
   
-   xit("Can Get an list of addreses balances",async()=>{
-        let result = await sdk.getAddressListBalance([
-            ['731337bb0f76463d578626a48367dfea4c6efcfa317604814f875d10','340c195f768be515488a6efedb958e135150b2ef3e53573a7017ac7d']
-            , 0, true
-        ]);
-        expect(result).to.be.an('Array');
-        console.log('result',result);
+   it("Can Get an list of addreses balances",async()=>{
+        let addressList = ['731337bb0f76463d578626a48367dfea4c6efcfa317604814f875d10','340c195f768be515488a6efedb958e135150b2ef3e53573a7017ac7d'];
+        let result = await sdk.getAddressListBalance([ addressList, 0, true]);
+        expect(result).to.be.an('Object');
+        expect(result).to.have.all.keys(...addressList)
         return result;
 
-    })
+        // this is slow
+    }).timeout(5000);
     
-    it("Can genearte new keys",async()=>{
+    it("Can generate new keys",async()=>{
         let result = await sdk.getNewKeys();
         expect(result).to.be.an('Array');
 
