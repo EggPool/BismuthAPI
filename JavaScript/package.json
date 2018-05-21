@@ -1,0 +1,22 @@
+{
+  "name": "bismuthapi",
+  "version": "1.0.0",
+  "description": "Javascript client for bismuth api",
+  "dependencies": {
+    "socket.io-client": "^2.1.0",
+    "superagent": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/socket.io-client": "^1.4.32",
+    "@types/chai": "^4.1.2",
+    "@types/node": "^9.6.4",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.5",
+    "typescript": "^2.8.1"
+  },
+  "scripts": {
+    "test": "mocha  ./tests/demo.js"
+  },
+  "author": "https://github.com/gabidi",
+  "license": "ISC"
+}
