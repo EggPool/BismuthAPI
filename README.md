@@ -29,7 +29,7 @@ See the "[Doc](Doc/)" directory for a quick start.
 WIP:
 * [Python client library](Python/) Available (reference)
 * [PHP client library](PHP/) Available with demo app.
-* [JS client library](Javascript/) with tests and demo thanks to @gabidi.
+* [JS client library](JavaScript/) with tests and demo thanks to @gabidi.
 
 # Related work
 
