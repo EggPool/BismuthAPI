@@ -1,0 +1,5 @@
+demo.exe : demo.cpp  BismuthNative.hpp
+	cl /EHsc demo.cpp 
+
+clean :
+	del *.obj demo.exe
