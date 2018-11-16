@@ -3,10 +3,6 @@
 // https://github.com/EggPool/BismuthAPI
 // Bismuth Native API command reference: https://github.com/EggPool/BismuthAPI/blob/3ebf5449d2763fd01e3fb44c2234fc5f1b99affa/Doc/commands_reference.md
 
-
-// https://github.com/sheredom/json.h
-//#include "json_h/json.h"
-
 #include "BismuthNative.hpp"
 
 
