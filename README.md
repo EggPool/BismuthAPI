@@ -15,7 +15,7 @@ A json-rpc server is available as a separate app. It's designed to be as bitcoin
 You'll find it at [Bismuth Json-RPC](https://github.com/EggPool/BismuthRPC) with its doc.
 
 The json-rpc has the internal logic to create and keep track of multiple accounts and addresses.
-It's first purpose was to be used by echanges, to ease the integration of Bismuth.
+Its first purpose was to be used by echanges, to ease the integration of Bismuth.
 
 ## The Native API
 
@@ -30,6 +30,12 @@ WIP:
 * [Python client library](Python/) Available (reference)
 * [PHP client library](PHP/) Available with demo app.
 * [JS client library](JavaScript/) with tests and demo thanks to @gabidi.
+* [C++ client library](C%2B%2B/) with demo app, thanks to @LeMoussel
+* [Go client library](Go/) with demo app, thanks to @LeMoussel
+
+TBD:
+* Lua
+* Please suggest more
 
 # Related work
 
