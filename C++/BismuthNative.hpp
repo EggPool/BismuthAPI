@@ -114,7 +114,6 @@ std::string BismuthNative::command(const char *t, bool bRecv = true)
     
     return "";
 }
-
 template<typename... Args>
 std::string BismuthNative::command(const std::string t, Args... args) 
 {
@@ -138,7 +137,6 @@ std::string BismuthNative::command(const std::string t, bool bRecv = true)
     
     return "";
 }
-
 template<typename... Args>
 std::string BismuthNative::command(int t, Args... args) 
 {
@@ -169,7 +167,6 @@ std::string BismuthNative::command(int t, bool bRecv = true)
     
     return "";
 }
-
 template<typename... Args>
 std::string BismuthNative::command(std::vector<std::string> t, Args... args) 
 {

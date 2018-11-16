@@ -1,0 +1,17 @@
+
+PROJECTNAME = demo.exe
+GOFILES = demo.go
+
+all: clean build
+
+build:
+    @echo;Building binary $(PROJECTNAME)
+    @go build -o bin\$(PROJECTNAME) $(GOFILES)
+
+run:
+    @echo;Running $(PROJECTNAME)
+    @bin\$(PROJECTNAME)
+
+clean:
+    @echo;Cleaning build cache
+    @if exist bin\$(PROJECTNAME) del bin\$(PROJECTNAME)
