@@ -92,7 +92,7 @@ Each parameter is sent as a single message. Here, this leads to 2 messages/buffe
 
 > requested block height is an int, not a string, Then it does not have quotes.
 
-## More buffers
+## More buffers
 
 If you're writing your own implementation, you can use the [Python/demo.py](../Python/demo.py) app, with "RAW" set to "True" to print out and compare raw buffers.
 
