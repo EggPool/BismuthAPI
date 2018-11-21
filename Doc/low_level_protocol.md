@@ -87,7 +87,7 @@ Note the quotes around the text command, raising len to 12 chars.
 ## blockget(558742)
 
 Each parameter is sent as a single message. Here, this leads to 2 messages/buffers:  
-`0000000010"blockget"`
+`0000000010"blockget"`  
 `0000000006558742`
 
 > requested block height is an int, not a string, Then it does not have quotes.
