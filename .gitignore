@@ -101,6 +101,8 @@ ENV/
 # mypy
 .mypy_cache/
 
+# Distribution / packaging VSCode
 .vscode/
 C++/analyseValgrind.sh
 C++/analyseValgrind.txt
+C#/obj
