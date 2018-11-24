@@ -32,6 +32,7 @@ WIP:
 * [JS client library](JavaScript/) with tests and demo thanks to @gabidi.
 * [C++ client library](C%2B%2B/) with demo app, thanks to @LeMoussel
 * [Go client library](Go/) with demo app, thanks to @LeMoussel
+* [C# client library](C%23/) with demo apps, thanks to @LeMoussel again
 
 TBD:
 * Lua
