@@ -1,3 +1,11 @@
+# DEPRECATED
+
+**THIS REPO IS DEPRECATED AND WILL NOT BE UPDATED ANYMORE**
+
+Please refer to the following official repo for further updates: https://github.com/bismuthfoundation/BismuthAPI
+
+
+
 # BismuthAPI
 API Doc and code samples for Bismuth cryptocurrency.
 
